@@ -11,15 +11,15 @@ This package includes the following key components:
 - 🔧 Base Scripts:
     - `BaseSingleton`: A simple singleton pattern implementation for easy access to global instances.
     - `BaseGameManager`:  A foundational game manager for centralized game logic and state management.
-    ---
+
 - ⚙️ Useful Tools for Unity Editor:
     - `ProjectCleanup`:  Automatically find unused assets and files to keep your project clean.
     - `SceneQuickAccess`: Quickly switch between scenes within the editor for faster development.
     - `UnusedAssetFinder`: Identify and locate unused assets in your project.
-    ---
+
 - 📦 Custom Collections:
     - `UniqueQueue`: A queue data structure that ensures unique items are added and prevents duplicates.
-    ---
+    
 - 🔨 Utility Scripts:
     - `ConvertUtils`: A collection of conversion methods for common data types (e.g., converting between Vector3, strings, etc.).
     - `GenerateUtils`: Generate random values, unique IDs, random vectors, and other useful utilities for game logic.
