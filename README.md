@@ -28,9 +28,8 @@ This package includes the following key components:
 
 # 🚀 Getting started
 
-- Copy the URL of this repository.
 - Open the Unity Editor and go to Window > Package Manager.
-- In the Package Manager, click the + icon and select Add package from git URL.
+- In the Package Manager, click the + icon and select Add package from git URL `https://github.com/NguyenZuy/zuy-workspace.git`
 - Paste the repository URL into the field and click Add.
 
 That's it! The package will be imported into your project, ready to use.
