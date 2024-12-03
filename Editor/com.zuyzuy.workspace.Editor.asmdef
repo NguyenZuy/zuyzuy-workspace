@@ -1,0 +1,16 @@
+{
+    "name": "com.zuyzuy.workspace.Editor",
+    "rootNamespace": "com.zuyzuy.workspace.Editor",
+    "references": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

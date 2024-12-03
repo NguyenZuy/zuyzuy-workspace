@@ -1,0 +1,14 @@
+{
+    "name": "com.zuyzuy.workspace",
+    "rootNamespace": "com.zuyzuy.workspace",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
