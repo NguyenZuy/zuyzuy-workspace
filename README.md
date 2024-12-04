@@ -16,6 +16,7 @@ This package includes the following key components:
     - `ProjectCleanup`:  Automatically find unused assets and files to keep your project clean.
     - `SceneQuickAccess`: Quickly switch between scenes within the editor for faster development.
     - `UnusedAssetFinder`: Identify and locate unused assets in your project.
+    - `ZuyLogger`: Custom Unity logger for more readable.
 
 - 📦 Custom Collections:
     - `UniqueQueue`: A queue data structure that ensures unique items are added and prevents duplicates.
