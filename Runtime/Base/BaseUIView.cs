@@ -2,15 +2,9 @@ using UnityEngine;
 
 namespace Zuy.Workspace
 {
-    public abstract class BaseUIView<T> : MonoBehaviour where T : BaseGameManager<T>
+    public abstract class BaseUIView : MonoBehaviour
     {
-        protected T m_GameManager;
-
-        protected virtual void Awake()
-        {
-            m_GameManager = BaseGameManager<T>.Instance;
-        }
-
+        protected virtual void Awake() { }
         protected virtual void Start() { }
 
         protected virtual void Update() { }
