@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace com.zuyzuy.workspace.Editor
+namespace Zuy.Workspace.Editor
 {
     /// <summary>
     /// Project Cleanup and Organization Tool

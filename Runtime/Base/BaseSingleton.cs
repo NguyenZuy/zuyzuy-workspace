@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace com.zuyzuy.workspace
+namespace Zuy.Workspace
 {
     public class BaseSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {

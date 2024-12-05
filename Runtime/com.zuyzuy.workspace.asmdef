@@ -1,6 +1,6 @@
 {
-    "name": "com.zuyzuy.workspace",
-    "rootNamespace": "com.zuyzuy.workspace",
+    "name": "Zuy.Workspace",
+    "rootNamespace": "Zuy.Workspace",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

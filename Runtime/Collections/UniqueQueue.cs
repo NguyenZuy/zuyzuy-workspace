@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace com.zuyzuy.workspace
+namespace Zuy.Workspace
 {
     /// <summary>
     /// A custom queue implementation that ensures unique elements.

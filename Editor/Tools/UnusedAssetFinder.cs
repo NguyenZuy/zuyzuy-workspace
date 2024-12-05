@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace com.zuyzuy.workspace.Editor
+namespace Zuy.Workspace.Editor
 {
     public class UnusedAssetFinder : EditorWindow
     {

@@ -1,4 +1,4 @@
-namespace com.zuyzuy.workspace
+namespace Zuy.Workspace
 {
     public abstract class BaseGameManager : BaseSingleton<BaseGameManager>
     {

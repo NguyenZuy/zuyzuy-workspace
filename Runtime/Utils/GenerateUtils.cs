@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace com.zuyzuy.workspace
+namespace Zuy.Workspace
 {
     /// <summary>
     /// Utility class for generating various types of data and performing random generations.

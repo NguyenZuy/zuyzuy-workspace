@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using UnityEngine;
 
-namespace com.zuyzuy.workspace.Editor
+namespace Zuy.Workspace.Editor
 {
     public static class ZuyLogger
     {
