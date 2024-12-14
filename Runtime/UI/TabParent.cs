@@ -7,7 +7,7 @@ namespace Zuy.Workspace
     {
         [SerializeField] private Tab _firstSelectedTab;
         [SerializeField] private bool _changeImg;
-        [SerializeField] private bool _changeSprite;
+        [SerializeField] private bool _changeImgColor;
         [SerializeField] private bool _changeTextColor;
         [SerializeField] private bool _changeText;
 
@@ -39,8 +39,8 @@ namespace Zuy.Workspace
             {
                 if (_changeImg)
                     tab.UpdateImageSprite(isActive);
-                if (_changeSprite)
-                    tab.UpdateImageSprite(isActive);
+                if (_changeImgColor)
+                    tab.UpdateImageColor(isActive);
                 if (_changeTextColor)
                     tab.UpdateTextColor(isActive);
                 if (_changeText)
