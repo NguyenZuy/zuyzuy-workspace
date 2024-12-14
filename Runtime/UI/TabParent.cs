@@ -11,6 +11,8 @@ namespace Zuy.Workspace
         [SerializeField] private bool _changeTextColor;
         [SerializeField] private bool _changeText;
 
+        public event Action<int> OnChangeTab;
+
         private Tab _curTab;
 
         private void Start()
@@ -56,6 +58,8 @@ namespace Zuy.Workspace
         {
             if (tab == _curTab && isActive)
                 return;
+
+            OnChangeTab?.Invoke(tab.Id);
 
             SetTabState(_curTab, false);
             _curTab = isActive ? tab : _firstSelectedTab;

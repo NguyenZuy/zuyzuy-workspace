@@ -6,6 +6,7 @@ namespace Zuy.Workspace
 {
     public sealed class Tab : MonoBehaviour
     {
+        [SerializeField] private int _id;
         [SerializeField] private Button _btn;
 
         [Header("Image")]
@@ -24,6 +25,8 @@ namespace Zuy.Workspace
 
         private TabParent _tabParent;
         private bool _isActive;
+
+        public int Id => _id;
 
         private void Start()
         {
