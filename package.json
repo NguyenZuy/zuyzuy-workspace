@@ -2,7 +2,7 @@
   "name": "com.zuy.workspace",
   "version": "1.0.0",
   "displayName": "Zuy Workspace",
-  "description": "This is an example package",
+  "description": "This is my workspace package",
   "unity": "2022.1",
   "unityRelease": "0b5",
   "keywords": [
@@ -11,7 +11,7 @@
   ],
   "author": {
     "name": "Zuy",
-    "email": "nguyenduydevgame@gmail.com"
+    "email": "nguyenduygamedev@gmail.com"
   },
   "samples": [
     {
