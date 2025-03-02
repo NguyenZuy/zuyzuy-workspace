@@ -15,9 +15,9 @@
   },
   "samples": [
     {
-      "displayName": "Workspace Samples",
-      "description": "This contain multiple samples about my workspace.",
-      "path": "Samples~/"
+      "displayName": "Mobile Controller",
+      "description": "",
+      "path": "Samples~/MobileController"
     }
   ]
 }
