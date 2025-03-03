@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Zuy.Workspace
+namespace ZuyZuy.Workspace
 {
     public sealed class TabParent : MonoBehaviour
     {

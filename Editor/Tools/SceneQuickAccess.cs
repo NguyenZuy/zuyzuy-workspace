@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace Zuy.Workspace.Editor
+namespace ZuyZuy.Workspace.Editor
 {
     public class SceneQuickAccess : EditorWindow
     {

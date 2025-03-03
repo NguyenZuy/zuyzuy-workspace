@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Zuy.Workspace
+namespace ZuyZuy.Workspace
 {
     public abstract class BaseUIView : MonoBehaviour
     {

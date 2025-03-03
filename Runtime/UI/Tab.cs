@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Zuy.Workspace
+namespace ZuyZuy.Workspace
 {
     public sealed class Tab : MonoBehaviour
     {

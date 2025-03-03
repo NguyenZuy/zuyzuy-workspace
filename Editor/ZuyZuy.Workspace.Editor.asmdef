@@ -1,6 +1,6 @@
 {
-    "name": "Zuyt.Workspace.Editor",
-    "rootNamespace": "Zuy.Workspace.Editor",
+    "name": "ZuyZuy.Workspace.Editor",
+    "rootNamespace": "ZuyZuy.Workspace.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"
