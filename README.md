@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="zuy.jpg" />
+  </a>
+</p>
+
 # 📣 Welcome to **Zuy Workspace**
 
 Zuy Workspace is a custom Unity package designed to help quickly set up and streamline game development process. It includes a variety of scripts, tools, and resources that serve as a solid foundation for Unity projects, making it especially useful for new game development.
