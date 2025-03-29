@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using TMPro;
-using static Zuy.Workspace.MobileController.UniversalButton;
+using static ZuyZuy.Workspace.MobileController.UniversalButton;
 
 namespace ZuyZuy.Workspace.MobileController
 {
