@@ -1,4 +1,4 @@
-using System.Numerics;
+using UnityEngine;
 
 namespace ZuyZuy.Workspace
 {
@@ -6,17 +6,17 @@ namespace ZuyZuy.Workspace
     {
         public static Vector3 OnlyXY(this Vector3 value)
         {
-            return new Vector3(value.X, value.Y, 0f);
+            return new Vector3(value.x, value.y, 0f);
         }
 
         public static Vector3 OnlyXZ(this Vector3 value)
         {
-            return new Vector3(value.X, 0f, value.Z);
+            return new Vector3(value.x, 0f, value.z);
         }
 
         public static Vector3 OnlyYZ(this Vector3 value)
         {
-            return new Vector3(0f, value.Y, value.Z);
+            return new Vector3(0f, value.y, value.z);
         }
     }
 }
