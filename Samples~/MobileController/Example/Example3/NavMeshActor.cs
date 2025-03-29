@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
-using Zuy.Workspace.MobileController;
+using ZuyZuy.Workspace.MobileController;
 using System;
 
 public class NavMeshActor : MonoBehaviour {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zuy.Workspace.MobileController;
+using ZuyZuy.Workspace.MobileController;
 
 public class ThirdPersonActor : MonoBehaviour {
     public UniversalButton inputMove;
