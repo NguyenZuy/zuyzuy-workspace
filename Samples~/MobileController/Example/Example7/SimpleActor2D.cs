@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zuy.Workspace.MobileController;
+using ZuyZuy.Workspace.MobileController;
 using System;
 
 public class SimpleActor2D : MonoBehaviour {
