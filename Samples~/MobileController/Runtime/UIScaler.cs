@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Zuy.Workspace.MobileController
+namespace ZuyZuy.Workspace.MobileController
 {
     [DefaultExecutionOrder(-1200)]
     public class UIScaler : MonoBehaviour {

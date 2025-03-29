@@ -8,7 +8,7 @@ using UnityEngine.Events;
 using TMPro;
 using static Zuy.Workspace.MobileController.UniversalButton;
 
-namespace Zuy.Workspace.MobileController
+namespace ZuyZuy.Workspace.MobileController
 {
     public class TouchArea : MonoBehaviour,
     IPointerDownHandler,

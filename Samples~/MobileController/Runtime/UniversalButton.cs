@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using TMPro;
 
-namespace Zuy.Workspace.MobileController {
+namespace ZuyZuy.Workspace.MobileController {
     public class UniversalButton : MonoBehaviour,
     IPointerDownHandler,
     IBeginDragHandler,

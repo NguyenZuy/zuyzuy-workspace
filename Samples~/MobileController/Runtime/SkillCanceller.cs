@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Zuy.Workspace.MobileController
+namespace ZuyZuy.Workspace.MobileController
 {
     public class SkillCanceller : MonoBehaviour {
         public UniversalButton[] associateBtns;

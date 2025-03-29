@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace Zuy.Workspace.MobileController {
+namespace ZuyZuy.Workspace.MobileController {
 
     public class TouchAssistance : MonoBehaviour {
         public BtnSetting btnMain;
