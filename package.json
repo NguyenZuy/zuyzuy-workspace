@@ -19,5 +19,8 @@
       "description": "",
       "path": "Samples~/MobileController"
     }
-  ]
+  ],
+  "dependencies": {
+    "com.annulusgames.lit-motion": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion"
+  }
 }
