@@ -7,13 +7,13 @@ using LitMotion.Extensions;
 
 namespace ZuyZuy.Workspace
 {
-    public class Loading : MonoBehaviour
+    public class LoadingPage : MonoBehaviour
     {
         [Header("UI References")]
         [SerializeField] private Slider progressBar;
         [SerializeField] private TextMeshProUGUI progressText;
         [SerializeField] private TextMeshProUGUI loadingText;
-        [SerializeField] private GameObject loadingPanel;
+        [SerializeField] private GameObject container;
         [SerializeField] private Image sliderFillImage;
 
         [Header("Settings")]
@@ -26,14 +26,17 @@ namespace ZuyZuy.Workspace
         [Header("Events")]
         public Action onLoadingComplete;
 
-        private float currentProgress;
-        private bool isLoading;
+        private float _currentProgress;
+        private bool _isLoading;
         private MotionHandle progressMotionHandle;
+
+        public bool IsLoading => _isLoading;
+        public float CurrentProgress => _currentProgress;
 
         private void Awake()
         {
-            if (loadingPanel != null)
-                loadingPanel.SetActive(false);
+            if (container != null)
+                container.SetActive(false);
         }
 
         private void OnDestroy()
@@ -43,20 +46,20 @@ namespace ZuyZuy.Workspace
 
         public void Show()
         {
-            if (loadingPanel != null)
-                loadingPanel.SetActive(true);
+            if (container != null)
+                container.SetActive(true);
 
-            isLoading = true;
+            _isLoading = true;
             SetProgress(0f);
             SetLoadingText(defaultLoadingText);
         }
 
         public void Hide()
         {
-            if (loadingPanel != null)
-                loadingPanel.SetActive(false);
+            if (container != null)
+                container.SetActive(false);
 
-            isLoading = false;
+            _isLoading = false;
         }
 
         public void SetProgress(float progress)
@@ -67,16 +70,16 @@ namespace ZuyZuy.Workspace
             progressMotionHandle.Cancel();
 
             // Create smooth progress animation
-            progressMotionHandle = LMotion.Create(currentProgress, targetProgress, animationDuration)
+            progressMotionHandle = LMotion.Create(_currentProgress, targetProgress, animationDuration)
                 .WithEase(easeType)
                 .WithOnLoopComplete(value =>
                 {
-                    currentProgress = value;
+                    _currentProgress = value;
                     UpdateUI();
                 })
                 .WithOnComplete(() =>
                 {
-                    if (autoHideOnComplete && currentProgress >= 1f)
+                    if (autoHideOnComplete && _currentProgress >= 1f)
                     {
                         Hide();
                         onLoadingComplete?.Invoke();
@@ -88,10 +91,10 @@ namespace ZuyZuy.Workspace
         private void UpdateUI()
         {
             if (progressBar != null)
-                progressBar.value = currentProgress;
+                progressBar.value = _currentProgress;
 
             if (progressText != null && showPercentage)
-                progressText.text = $"{Mathf.RoundToInt(currentProgress * 100)}%";
+                progressText.text = $"{Mathf.RoundToInt(_currentProgress * 100)}%";
         }
 
         public void SetLoadingText(string text)
@@ -109,8 +112,5 @@ namespace ZuyZuy.Workspace
                     .BindToColor(sliderFillImage);
             }
         }
-
-        public bool IsLoading => isLoading;
-        public float CurrentProgress => currentProgress;
     }
 }
