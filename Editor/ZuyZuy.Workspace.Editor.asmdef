@@ -1,7 +1,9 @@
 {
     "name": "ZuyZuy.Workspace.Editor",
     "rootNamespace": "ZuyZuy.Workspace.Editor",
-    "references": [],
+    "references": [
+        "GUID:c6d33a62f0254e4a5af0e1fa64778a1b"
+    ],
     "includePlatforms": [
         "Editor"
     ],

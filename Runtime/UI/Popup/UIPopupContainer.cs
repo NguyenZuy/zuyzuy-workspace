@@ -7,9 +7,15 @@ namespace ZuyZuy.Workspace
     {
         private List<UIPopup> _popups;
 
-        public UIPopup GetPopup(UIPopupName popupName)
+        private void Awake()
         {
-            return _popups.Find(popup => popup.PopupName == popupName);
+            // Get all UIPopup components from children
+            _popups = new List<UIPopup>(GetComponentsInChildren<UIPopup>(true));
+        }
+
+        public UIPopup GetPopup(string popupName)
+        {
+            return _popups.Find(popup => popup.PopupName.Equals(popupName));
         }
     }
 }
