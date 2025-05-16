@@ -5,7 +5,7 @@ using System;
 using LitMotion;
 using LitMotion.Extensions;
 
-namespace Zuy.Workspace.UI
+namespace Zuy.Workspace
 {
     public class Loading : MonoBehaviour
     {
