@@ -21,7 +21,6 @@
     }
   ],
   "dependencies": {
-    "com.annulusgames.lit-motion": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion",
-    "com.codewriter.tri-inspector": "https://github.com/codewriter-packages/Tri-Inspector.git#1.14.1"
+    "com.annulusgames.lit-motion": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion"
   }
 }
