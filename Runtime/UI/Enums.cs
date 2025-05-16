@@ -10,4 +10,11 @@ namespace ZuyZuy.Workspace
         SlideFromRight,
         Bounce
     }
+
+    public enum DialogType
+    {
+        Alert,
+        Confirm,
+        Input
+    }
 }

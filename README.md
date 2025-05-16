@@ -16,20 +16,33 @@ This package includes the following key components:
 
 - 🔧 Base Scripts:
     - `BaseSingleton`: A simple singleton pattern implementation for easy access to global instances.
-    - `BaseGameManager`:  A foundational game manager for centralized game logic and state management.
 
 - ⚙️ Useful Tools for Unity Editor:
-    - `ProjectCleanup`:  Automatically find unused assets and files to keep your project clean.
-    - `SceneQuickAccess`: Quickly switch between scenes within the editor for faster development.
-    - `UnusedAssetFinder`: Identify and locate unused assets in your project.
-    - `ZuyLogger`: Custom Unity logger for more readable.
+    - `ZuyLogger`: Custom Unity logger for more readable and organized debugging.
+    - `Editor Tools`: Various editor utilities to enhance your Unity development workflow.
 
 - 📦 Custom Collections:
-    - `UniqueQueue`: A queue data structure that ensures unique items are added and prevents duplicates.
+    - Collections namespace with specialized data structures for game development.
     
 - 🔨 Utility Scripts:
+    - `CommonUtils`: General-purpose utility methods for common game development tasks.
     - `ConvertUtils`: A collection of conversion methods for common data types (e.g., converting between Vector3, strings, etc.).
     - `GenerateUtils`: Generate random values, unique IDs, random vectors, and other useful utilities for game logic.
+
+- 🎨 UI Components:
+    - `Popup System`:
+        - `UIPopup`: Base class for creating popup windows with customizable animations and behaviors
+        - `UIPopupController`: Manages popup lifecycle and stacking
+        - `UIPopupContainer`: Container for organizing and managing multiple popups
+        - `UIDialog`: Specialized popup for dialog boxes with customizable buttons and content
+        - `UIDialogController`: Manages dialog interactions and responses
+    - `Tab System`:
+        - `Tab`: Individual tab component with customizable appearance and behavior
+        - `TabParent`: Container for managing multiple tabs and their interactions
+    - `UI Enums`: Common enumerations for UI state management and interactions
+
+- 🏷️ Attributes:
+    - Custom attributes for enhanced Unity inspector functionality and code organization.
 
 -------------------------------
 
@@ -40,3 +53,9 @@ This package includes the following key components:
 - Paste the repository URL into the field and click Add.
 
 That's it! The package will be imported into your project, ready to use.
+
+-------------------------------
+
+# 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
