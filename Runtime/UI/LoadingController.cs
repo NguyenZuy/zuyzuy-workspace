@@ -32,6 +32,8 @@ namespace ZuyZuy.Workspace
             _loadingPage.Show();
             _loadingPage.SetLoadingText(loadingText);
 
+            _loadingPage.SetProgress();
+
             if (onComplete != null)
             {
                 _loadingPage.onLoadingComplete = onComplete;
