@@ -30,9 +30,6 @@ namespace ZuyZuy.Workspace
 
             HideAll();
             _loadingPage.Show();
-            _loadingPage.SetLoadingText(loadingText);
-
-            _loadingPage.SetProgress();
 
             if (onComplete != null)
             {
