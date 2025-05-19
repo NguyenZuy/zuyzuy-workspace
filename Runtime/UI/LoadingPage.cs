@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Cysharp.Threading.Tasks;
 using LitMotion;
-using LitMotion.Extensions;
 
 namespace ZuyZuy.Workspace
 {
@@ -23,11 +23,19 @@ namespace ZuyZuy.Workspace
         [SerializeField] private Ease easeType = Ease.OutQuad;
 
         [Header("Events")]
+        public Action onLoadingStart;
         public Action onLoadingComplete;
+        public Action onLoadingError;
+
+        [Header("Parallel Job")]
+        public Func<UniTask> parallelJob;
 
         private float _currentProgress;
         private bool _isLoading;
         private MotionHandle progressMotionHandle;
+        private bool isProgressAnimationDone;
+        private bool isJobDone;
+        private UniTask jobTask;
 
         public bool IsLoading => _isLoading;
         public float CurrentProgress => _currentProgress;
@@ -45,14 +53,87 @@ namespace ZuyZuy.Workspace
 
         public void Show()
         {
+            // Cancel any existing operations
+            progressMotionHandle.TryCancel();
+            jobTask = default;
+
             if (container != null)
                 container.SetActive(true);
 
             _isLoading = true;
             _currentProgress = 0f;
+            isProgressAnimationDone = false;
+            isJobDone = false;
+
             UpdateUI();
             SetLoadingText(defaultLoadingText);
-            SetProgress();
+            onLoadingStart?.Invoke();
+
+            // Start progress animation to 99%
+            progressMotionHandle = LMotion.Create(0f, 99f, animationDuration)
+                .WithEase(easeType)
+                .WithOnComplete(() =>
+                {
+                    isProgressAnimationDone = true;
+                    CheckForCompletion();
+                })
+                .Bind(value =>
+                {
+                    _currentProgress = value;
+                    UpdateUI();
+                });
+
+            // Start parallel job
+            if (parallelJob != null)
+            {
+                jobTask = parallelJob.Invoke();
+                ObserveJobTask().Forget();
+            }
+            else
+            {
+                isJobDone = true;
+                CheckForCompletion();
+            }
+        }
+
+        private async UniTaskVoid ObserveJobTask()
+        {
+            try
+            {
+                await jobTask;
+                isJobDone = true;
+                CheckForCompletion();
+            }
+            catch
+            {
+                OnJobFailed();
+            }
+        }
+
+        private void CheckForCompletion()
+        {
+            if (isProgressAnimationDone && isJobDone)
+            {
+                // Animate final 1% when both are ready
+                progressMotionHandle.TryCancel();
+                LMotion.Create(_currentProgress, 100f, 0.2f)
+                    .WithEase(easeType)
+                    .WithOnComplete(() => CheckCompletion(100f))
+                    .Bind(value =>
+                    {
+                        _currentProgress = value;
+                        UpdateUI();
+                    });
+            }
+        }
+
+        private void OnJobFailed()
+        {
+            progressMotionHandle.TryCancel();
+            _currentProgress = 0f;
+            UpdateUI();
+            onLoadingError?.Invoke();
+            Show(); // Restart the loading process
         }
 
         public void Hide()
@@ -61,20 +142,6 @@ namespace ZuyZuy.Workspace
                 container.SetActive(false);
 
             _isLoading = false;
-        }
-
-        public void SetProgress()
-        {
-            progressMotionHandle.TryCancel();
-
-            progressMotionHandle = LMotion.Create(0f, 100f, animationDuration)
-                .WithEase(easeType)
-                .WithOnComplete(() => CheckCompletion(100f))
-                .Bind(value =>
-                {
-                    _currentProgress = value;
-                    UpdateUI();
-                });
         }
 
         private void CheckCompletion(float finalProgress)
