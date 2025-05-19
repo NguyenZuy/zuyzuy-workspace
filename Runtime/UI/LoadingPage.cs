@@ -27,7 +27,7 @@ namespace ZuyZuy.Workspace
 
         private float _currentProgress;
         private bool _isLoading;
-        private MotionHandle? progressMotionHandle;
+        private MotionHandle progressMotionHandle;
 
         public bool IsLoading => _isLoading;
         public float CurrentProgress => _currentProgress;
@@ -40,10 +40,7 @@ namespace ZuyZuy.Workspace
 
         private void OnDestroy()
         {
-            if (progressMotionHandle.HasValue)
-            {
-                progressMotionHandle.Value.Cancel();
-            }
+            progressMotionHandle.TryCancel();
         }
 
         public void Show()
@@ -52,7 +49,8 @@ namespace ZuyZuy.Workspace
                 container.SetActive(true);
 
             _isLoading = true;
-            SetProgress(0f);
+            _currentProgress = 0f;
+            UpdateUI();
             SetLoadingText(defaultLoadingText);
         }
 
@@ -64,50 +62,42 @@ namespace ZuyZuy.Workspace
             _isLoading = false;
         }
 
-        public void SetProgress(float progress)
+        public void SetProgress()
         {
-            float targetProgress = Mathf.Clamp01(progress);
-
             // Cancel any existing motion
-            if (progressMotionHandle.HasValue)
-            {
-                progressMotionHandle.Value.Cancel();
-            }
+            progressMotionHandle.TryCancel();
 
-            // Create smooth progress animation
-            progressMotionHandle = LMotion.Create(_currentProgress, targetProgress, animationDuration)
+            // Create smooth progress animation from 0 to target
+            progressMotionHandle = LMotion.Create(0f, 100f, animationDuration)
                 .WithEase(easeType)
-                .WithOnLoopComplete(value =>
+                .WithOnComplete(() => CheckCompletion(100f))
+                .Bind(value =>
                 {
                     _currentProgress = value;
                     UpdateUI();
-                })
-                .WithOnComplete(() =>
-                {
-                    if (autoHideOnComplete && _currentProgress >= 1f)
-                    {
-                        Hide();
-                        onLoadingComplete?.Invoke();
-                    }
-                })
-                .RunWithoutBinding();
+                });
+        }
+
+        private void CheckCompletion(float finalProgress)
+        {
+            if (autoHideOnComplete && Mathf.Approximately(finalProgress, 1f))
+            {
+                Hide();
+                onLoadingComplete?.Invoke();
+            }
         }
 
         private void UpdateUI()
         {
-            Debug.Log($"[LoadingPage] Current Progress: {_currentProgress:F2}");
-
             if (progressBar != null)
             {
                 progressBar.value = _currentProgress;
-                Debug.Log($"[LoadingPage] Progress Bar Value Set: {_currentProgress:F2}");
             }
 
             if (progressText != null && showPercentage)
             {
                 int percentage = Mathf.RoundToInt(_currentProgress * 100);
                 progressText.text = $"{percentage}%";
-                Debug.Log($"[LoadingPage] Progress Text Set: {percentage}%");
             }
         }
 

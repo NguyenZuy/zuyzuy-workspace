@@ -10,9 +10,9 @@ namespace ZuyZuy.Workspace
         protected string m_popupName;
 
         private CanvasGroup _canvasGroup;
-        private MotionHandle? _fadeHandle;
-        private MotionHandle? _scaleHandle;
-        private MotionHandle? _slideHandle;
+        private MotionHandle _fadeHandle;
+        private MotionHandle _scaleHandle;
+        private MotionHandle _slideHandle;
 
         [SerializeField] protected PopupAppearanceAnim _appearanceAnim = PopupAppearanceAnim.Fade;
         [SerializeField] public float _animationDuration = 0.3f;
@@ -129,21 +129,9 @@ namespace ZuyZuy.Workspace
 
         private void CancelCurrentMotions()
         {
-            if (_fadeHandle.HasValue)
-            {
-                try { _fadeHandle.Value.Cancel(); } catch (System.Exception) { }
-                _fadeHandle = null;
-            }
-            if (_scaleHandle.HasValue)
-            {
-                try { _scaleHandle.Value.Cancel(); } catch (System.Exception) { }
-                _scaleHandle = null;
-            }
-            if (_slideHandle.HasValue)
-            {
-                try { _slideHandle.Value.Cancel(); } catch (System.Exception) { }
-                _slideHandle = null;
-            }
+            _fadeHandle.TryCancel();
+            _scaleHandle.TryCancel();
+            _slideHandle.TryCancel();
         }
 
         protected virtual void OnShow()
