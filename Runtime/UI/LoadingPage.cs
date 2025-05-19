@@ -45,6 +45,7 @@ namespace ZuyZuy.Workspace
 
         public void Show()
         {
+            Debug.Log("[LoadingPage] Show called");
             if (container != null)
                 container.SetActive(true);
 
@@ -56,6 +57,7 @@ namespace ZuyZuy.Workspace
 
         public void Hide()
         {
+            Debug.Log("[LoadingPage] Hide called");
             if (container != null)
                 container.SetActive(false);
 
@@ -64,24 +66,32 @@ namespace ZuyZuy.Workspace
 
         public void SetProgress()
         {
+            Debug.Log("[LoadingPage] SetProgress called");
             // Cancel any existing motion
             progressMotionHandle.TryCancel();
 
             // Create smooth progress animation from 0 to target
             progressMotionHandle = LMotion.Create(0f, 100f, animationDuration)
                 .WithEase(easeType)
-                .WithOnComplete(() => CheckCompletion(100f))
+                .WithOnComplete(() =>
+                {
+                    Debug.Log("[LoadingPage] Animation completed");
+                    CheckCompletion(100f);
+                })
                 .Bind(value =>
                 {
                     _currentProgress = value;
+                    Debug.Log($"[LoadingPage] Progress updated: {_currentProgress:F2}");
                     UpdateUI();
                 });
         }
 
         private void CheckCompletion(float finalProgress)
         {
-            if (autoHideOnComplete && Mathf.Approximately(finalProgress, 1f))
+            Debug.Log($"[LoadingPage] CheckCompletion called with progress: {finalProgress:F2}");
+            if (autoHideOnComplete && Mathf.Approximately(finalProgress, 100f))
             {
+                Debug.Log("[LoadingPage] Auto-hiding on completion");
                 Hide();
                 onLoadingComplete?.Invoke();
             }
@@ -92,17 +102,20 @@ namespace ZuyZuy.Workspace
             if (progressBar != null)
             {
                 progressBar.value = _currentProgress;
+                Debug.Log($"[LoadingPage] Progress bar updated: {_currentProgress:F2}");
             }
 
             if (progressText != null && showPercentage)
             {
-                int percentage = Mathf.RoundToInt(_currentProgress * 100);
+                int percentage = Mathf.RoundToInt(_currentProgress);
                 progressText.text = $"{percentage}%";
+                Debug.Log($"[LoadingPage] Progress text updated: {percentage}%");
             }
         }
 
         public void SetLoadingText(string text)
         {
+            Debug.Log($"[LoadingPage] Setting loading text: {text}");
             if (loadingText != null)
                 loadingText.text = text;
         }
