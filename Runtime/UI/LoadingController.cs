@@ -20,7 +20,7 @@ namespace ZuyZuy.Workspace
             _loadingCircle = FindFirstObjectByType<LoadingCircle>();
         }
 
-        public void ShowLoadingPage(string loadingText = "Loading...", float initialProgress = 0f)
+        public void ShowLoadingPage(string loadingText = "Loading...", float initialProgress = 0f, Action onComplete = null)
         {
             if (_loadingPage == null)
             {
@@ -32,6 +32,11 @@ namespace ZuyZuy.Workspace
             _loadingPage.Show();
             _loadingPage.SetLoadingText(loadingText);
             _loadingPage.SetProgress(initialProgress);
+
+            if (onComplete != null)
+            {
+                _loadingPage.onLoadingComplete = onComplete;
+            }
         }
 
         public void ShowLoadingCircle(string loadingText = "Loading...")
