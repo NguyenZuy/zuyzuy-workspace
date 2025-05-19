@@ -28,7 +28,7 @@ namespace ZuyZuy.Workspace
 
         private float _currentProgress;
         private bool _isLoading;
-        private MotionHandle progressMotionHandle;
+        private MotionHandle? progressMotionHandle;
 
         public bool IsLoading => _isLoading;
         public float CurrentProgress => _currentProgress;
@@ -41,7 +41,10 @@ namespace ZuyZuy.Workspace
 
         private void OnDestroy()
         {
-            progressMotionHandle.Cancel();
+            if (progressMotionHandle.HasValue)
+            {
+                progressMotionHandle.Value.Cancel();
+            }
         }
 
         public void Show()
@@ -67,7 +70,10 @@ namespace ZuyZuy.Workspace
             float targetProgress = Mathf.Clamp01(progress);
 
             // Cancel any existing motion
-            progressMotionHandle.Cancel();
+            if (progressMotionHandle.HasValue)
+            {
+                progressMotionHandle.Value.Cancel();
+            }
 
             // Create smooth progress animation
             progressMotionHandle = LMotion.Create(_currentProgress, targetProgress, animationDuration)
