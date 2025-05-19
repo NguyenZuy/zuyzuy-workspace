@@ -88,14 +88,10 @@ namespace ZuyZuy.Workspace
 
         private void UpdateUI()
         {
-            if (progressBar != null)
-            {
-                progressBar.value = _currentProgress;
-            }
-
-            if (progressText != null && showPercentage)
+            if (progressBar != null && progressText != null && showPercentage)
             {
                 int percentage = Mathf.RoundToInt(_currentProgress);
+                progressBar.value = percentage;
                 progressText.text = $"{percentage}%";
             }
         }
