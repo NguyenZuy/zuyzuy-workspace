@@ -21,14 +21,10 @@ namespace ZuyZuy.Workspace
 
         public string PopupName => m_popupName;
 
-        protected virtual void Awake()
+        protected virtual void Start()
         {
             _canvasGroup = _container.GetComponent<CanvasGroup>();
             _container = transform.GetChild(0).gameObject;
-        }
-
-        protected virtual void Start()
-        {
             Init();
         }
 
