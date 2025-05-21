@@ -9,6 +9,7 @@ namespace ZuyZuy.Workspace
     {
         protected string m_popupName;
 
+        private GameObject _container;
         private CanvasGroup _canvasGroup;
         private MotionHandle _fadeHandle;
         private MotionHandle _scaleHandle;
@@ -23,7 +24,8 @@ namespace ZuyZuy.Workspace
 
         protected virtual void Awake()
         {
-            _canvasGroup = GetComponent<CanvasGroup>();
+            _canvasGroup = _container.GetComponent<CanvasGroup>();
+            _container = transform.GetChild(0).gameObject;
         }
 
         protected virtual void Start()
@@ -35,7 +37,7 @@ namespace ZuyZuy.Workspace
 
         public void Show()
         {
-            gameObject.SetActive(true);
+            _container.SetActive(true);
             CancelCurrentMotions();
 
             switch (_appearanceAnim)
@@ -74,26 +76,26 @@ namespace ZuyZuy.Workspace
             switch (_appearanceAnim)
             {
                 case PopupAppearanceAnim.Fade:
-                    PlayFadeAnimation(1f, 0f, () => gameObject.SetActive(false));
+                    PlayFadeAnimation(1f, 0f, () => _container.SetActive(false));
                     break;
                 case PopupAppearanceAnim.Scale:
-                    PlayScaleAnimation(Vector3.one, _scaleStart, () => gameObject.SetActive(false));
+                    PlayScaleAnimation(Vector3.one, _scaleStart, () => _container.SetActive(false));
                     break;
                 case PopupAppearanceAnim.SlideFromTop:
-                    PlaySlideAnimation(Vector2.zero, new Vector2(0, _slideOffset.y), () => gameObject.SetActive(false));
+                    PlaySlideAnimation(Vector2.zero, new Vector2(0, _slideOffset.y), () => _container.SetActive(false));
                     break;
                 case PopupAppearanceAnim.SlideFromBottom:
-                    PlaySlideAnimation(Vector2.zero, new Vector2(0, -_slideOffset.y), () => gameObject.SetActive(false));
+                    PlaySlideAnimation(Vector2.zero, new Vector2(0, -_slideOffset.y), () => _container.SetActive(false));
                     break;
                 case PopupAppearanceAnim.SlideFromLeft:
-                    PlaySlideAnimation(Vector2.zero, new Vector2(-_slideOffset.x, 0), () => gameObject.SetActive(false));
+                    PlaySlideAnimation(Vector2.zero, new Vector2(-_slideOffset.x, 0), () => _container.SetActive(false));
                     break;
                 case PopupAppearanceAnim.SlideFromRight:
-                    PlaySlideAnimation(Vector2.zero, new Vector2(_slideOffset.x, 0), () => gameObject.SetActive(false));
+                    PlaySlideAnimation(Vector2.zero, new Vector2(_slideOffset.x, 0), () => _container.SetActive(false));
                     break;
                 case PopupAppearanceAnim.Bounce:
                     PlayScaleAnimation(Vector3.one, _scaleStart * 1.2f);
-                    PlayFadeAnimation(1f, 0f, () => gameObject.SetActive(false));
+                    PlayFadeAnimation(1f, 0f, () => _container.SetActive(false));
                     break;
             }
 
@@ -106,7 +108,7 @@ namespace ZuyZuy.Workspace
                 .WithEase(Ease.OutQuad)
                 .WithOnComplete(onComplete)
                 .BindToAlpha(_canvasGroup)
-                .AddTo(gameObject);
+                .AddTo(_container);
         }
 
         private void PlayScaleAnimation(Vector3 from, Vector3 to, System.Action onComplete = null)
@@ -114,8 +116,8 @@ namespace ZuyZuy.Workspace
             _scaleHandle = LMotion.Create(from, to, _animationDuration)
                 .WithEase(Ease.OutBack)
                 .WithOnComplete(onComplete)
-                .BindToLocalScale(transform)
-                .AddTo(gameObject);
+                .BindToLocalScale(_container.transform)
+                .AddTo(_container);
         }
 
         private void PlaySlideAnimation(Vector2 from, Vector2 to, System.Action onComplete = null)
@@ -123,8 +125,8 @@ namespace ZuyZuy.Workspace
             _slideHandle = LMotion.Create(from, to, _animationDuration)
                 .WithEase(Ease.OutQuad)
                 .WithOnComplete(onComplete)
-                .BindToAnchoredPosition(GetComponent<RectTransform>())
-                .AddTo(gameObject);
+                .BindToAnchoredPosition(_container.GetComponent<RectTransform>())
+                .AddTo(_container);
         }
 
         private void CancelCurrentMotions()
