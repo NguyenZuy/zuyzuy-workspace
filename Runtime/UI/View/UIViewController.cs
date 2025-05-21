@@ -23,7 +23,7 @@ namespace ZuyZuy.Workspace
             _activeView.Show();
         }
 
-        public void HideView()
+        public void HideCurrentView()
         {
             if (_activeView != null)
             {
