@@ -7,6 +7,7 @@ namespace ZuyZuy.Workspace
     public abstract class UIPopup : MonoBehaviour
     {
         protected string m_popupName;
+        protected object m_data;
 
         private GameObject _container;
         private CanvasGroup _canvasGroup;
@@ -30,8 +31,9 @@ namespace ZuyZuy.Workspace
 
         protected abstract void Init();
 
-        public void Show()
+        public void Show(object data = null)
         {
+            m_data = data;
             _container.SetActive(true);
             CancelCurrentMotions();
 

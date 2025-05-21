@@ -5,6 +5,7 @@ namespace ZuyZuy.Workspace
     public abstract class UIView : MonoBehaviour
     {
         protected string m_viewName;
+        protected object m_data;
 
         private GameObject _container;
 
@@ -17,8 +18,9 @@ namespace ZuyZuy.Workspace
 
         protected abstract void Init();
 
-        public void Show()
+        public void Show(object data = null)
         {
+            m_data = data;
             _container.SetActive(true);
             OnShow();
         }

@@ -12,7 +12,7 @@ namespace ZuyZuy.Workspace
             _viewContainer = FindFirstObjectByType<UIViewContainer>();
         }
 
-        public void ShowView(string viewName)
+        public void ShowView(string viewName, object data = null)
         {
             if (_activeView != null)
             {

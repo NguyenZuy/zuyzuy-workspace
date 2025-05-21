@@ -18,7 +18,7 @@ namespace ZuyZuy.Workspace
             _popupContainer = FindFirstObjectByType<UIPopupContainer>();
         }
 
-        public UIPopup ShowPopup(string popupName)
+        public UIPopup ShowPopup(string popupName, object data = null)
         {
             if (_isTransitioning)
             {
