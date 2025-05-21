@@ -4,7 +4,6 @@ using LitMotion.Extensions;
 
 namespace ZuyZuy.Workspace
 {
-    [RequireComponent(typeof(CanvasGroup))]
     public abstract class UIPopup : MonoBehaviour
     {
         protected string m_popupName;
