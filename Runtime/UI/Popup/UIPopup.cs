@@ -23,8 +23,8 @@ namespace ZuyZuy.Workspace
 
         protected virtual void Start()
         {
-            _canvasGroup = _container.GetComponent<CanvasGroup>();
             _container = transform.GetChild(0).gameObject;
+            _canvasGroup = _container.GetComponent<CanvasGroup>();
             Init();
         }
 
