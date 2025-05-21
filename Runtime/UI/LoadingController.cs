@@ -50,6 +50,18 @@ namespace ZuyZuy.Workspace
             _loadingCircle.SetLoadingText(loadingText);
         }
 
+        public void HideLoadingPage()
+        {
+            if (_loadingPage != null)
+                _loadingPage.Hide();
+        }
+
+        public void HideLoadingCircle()
+        {
+            if (_loadingCircle != null)
+                _loadingCircle.Hide();
+        }
+
         public void HideAll()
         {
             if (_loadingPage != null)
