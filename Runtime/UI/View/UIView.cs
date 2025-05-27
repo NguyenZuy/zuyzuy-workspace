@@ -13,6 +13,7 @@ namespace ZuyZuy.Workspace
 
         protected virtual void Start()
         {
+            _container = transform.GetChild(0).gameObject;
             Init();
         }
 
