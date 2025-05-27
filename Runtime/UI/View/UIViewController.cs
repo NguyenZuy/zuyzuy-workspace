@@ -20,7 +20,7 @@ namespace ZuyZuy.Workspace
             }
 
             _activeView = _viewContainer.GetView(viewName);
-            _activeView.Show();
+            _activeView.Show(data);
         }
 
         public void HideCurrentView()
