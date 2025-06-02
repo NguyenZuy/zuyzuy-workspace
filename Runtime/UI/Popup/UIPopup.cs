@@ -26,6 +26,9 @@ namespace ZuyZuy.Workspace
         {
             _container = transform.GetChild(0).gameObject;
             _canvasGroup = _container.GetComponent<CanvasGroup>();
+            if (_canvasGroup == null)
+                _canvasGroup = _container.AddComponent<CanvasGroup>();
+
             Init();
         }
 
