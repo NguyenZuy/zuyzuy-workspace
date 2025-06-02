@@ -39,5 +39,10 @@ namespace ZuyZuy.Workspace
         protected virtual void OnHide()
         {
         }
+
+        protected virtual void OnHideClick()
+        {
+            Hide();
+        }
     }
 }
