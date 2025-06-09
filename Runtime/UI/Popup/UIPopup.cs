@@ -21,6 +21,7 @@ namespace ZuyZuy.Workspace
         [SerializeField] protected Vector3 m_ScaleStart = new Vector3(0.8f, 0.8f, 1f);
 
         public string PopupName => m_PopupName;
+        public float AnimationDuration => m_AnimationDuration;
 
         protected virtual void Start()
         {

@@ -50,7 +50,7 @@ namespace ZuyZuy.Workspace
             popup.Show();
 
             // Reset transition flag after animation duration
-            Invoke(nameof(ResetTransitionFlag), popup._animationDuration + _transitionDelay);
+            Invoke(nameof(ResetTransitionFlag), popup.AnimationDuration + _transitionDelay);
 
             return popup;
         }
@@ -101,7 +101,7 @@ namespace ZuyZuy.Workspace
             }
 
             // Reset transition flag after animation duration
-            Invoke(nameof(ResetTransitionFlag), popup._animationDuration + _transitionDelay);
+            Invoke(nameof(ResetTransitionFlag), popup.AnimationDuration + _transitionDelay);
         }
 
         public void HideAllPopups()
