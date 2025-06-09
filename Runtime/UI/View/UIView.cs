@@ -19,14 +19,14 @@ namespace ZuyZuy.Workspace
 
         protected abstract void Init();
 
-        public void Show(object data = null)
+        public virtual void Show(object data = null)
         {
             m_data = data;
             _container.SetActive(true);
             OnShow();
         }
 
-        public void Hide()
+        public virtual void Hide()
         {
             _container.SetActive(false);
             OnHide();

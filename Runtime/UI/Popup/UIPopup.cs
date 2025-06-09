@@ -34,7 +34,7 @@ namespace ZuyZuy.Workspace
 
         protected abstract void Init();
 
-        public void Show(object data = null)
+        public virtual void Show(object data = null)
         {
             m_data = data;
             _container.SetActive(true);
@@ -69,7 +69,7 @@ namespace ZuyZuy.Workspace
             OnShow();
         }
 
-        public void Hide()
+        public virtual void Hide()
         {
             CancelCurrentMotions();
 
@@ -102,7 +102,7 @@ namespace ZuyZuy.Workspace
             OnHide();
         }
 
-        private void PlayFadeAnimation(float from, float to, System.Action onComplete = null)
+        protected virtual void PlayFadeAnimation(float from, float to, System.Action onComplete = null)
         {
             _fadeHandle = LMotion.Create(from, to, _animationDuration)
                 .WithEase(Ease.OutQuad)
@@ -111,7 +111,7 @@ namespace ZuyZuy.Workspace
                 .AddTo(_container);
         }
 
-        private void PlayScaleAnimation(Vector3 from, Vector3 to, System.Action onComplete = null)
+        protected virtual void PlayScaleAnimation(Vector3 from, Vector3 to, System.Action onComplete = null)
         {
             _scaleHandle = LMotion.Create(from, to, _animationDuration)
                 .WithEase(Ease.OutBack)
@@ -120,7 +120,7 @@ namespace ZuyZuy.Workspace
                 .AddTo(_container);
         }
 
-        private void PlaySlideAnimation(Vector2 from, Vector2 to, System.Action onComplete = null)
+        protected virtual void PlaySlideAnimation(Vector2 from, Vector2 to, System.Action onComplete = null)
         {
             _slideHandle = LMotion.Create(from, to, _animationDuration)
                 .WithEase(Ease.OutQuad)
@@ -129,7 +129,7 @@ namespace ZuyZuy.Workspace
                 .AddTo(_container);
         }
 
-        private void CancelCurrentMotions()
+        protected virtual void CancelCurrentMotions()
         {
             _fadeHandle.TryCancel();
             _scaleHandle.TryCancel();
