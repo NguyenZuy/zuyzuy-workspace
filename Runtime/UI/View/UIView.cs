@@ -4,16 +4,16 @@ namespace ZuyZuy.Workspace
 {
     public abstract class UIView : MonoBehaviour
     {
-        protected string m_viewName;
-        protected object m_data;
+        protected string m_ViewName;
+        protected object m_Data;
 
-        private GameObject _container;
+        protected GameObject m_Container;
 
-        public string ViewName => m_viewName;
+        public string ViewName => m_ViewName;
 
         protected virtual void Start()
         {
-            _container = transform.GetChild(0).gameObject;
+            m_Container = transform.GetChild(0).gameObject;
             Init();
         }
 
@@ -21,14 +21,14 @@ namespace ZuyZuy.Workspace
 
         public virtual void Show(object data = null)
         {
-            m_data = data;
-            _container.SetActive(true);
+            m_Data = data;
+            m_Container.SetActive(true);
             OnShow();
         }
 
         public virtual void Hide()
         {
-            _container.SetActive(false);
+            m_Container.SetActive(false);
             OnHide();
         }
 

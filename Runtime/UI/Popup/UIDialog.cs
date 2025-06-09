@@ -22,7 +22,7 @@ namespace ZuyZuy.Workspace
 
         protected override void Init()
         {
-            m_popupName = "Dialog";
+            m_PopupName = "Dialog";
 
             if (_confirmButton != null)
                 _confirmButton.onClick.AddListener(OnConfirmClicked);
