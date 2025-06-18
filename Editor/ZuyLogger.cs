@@ -15,7 +15,7 @@ namespace ZuyZuy.Workspace.Editor
         public static void Log(string category, string message, string color = "white")
         {
             category = category.ToUpper();
-            UnityEngine.Debug.Log($"[<color={color}>{category}] {message}");
+            UnityEngine.Debug.Log($"👉 <b><color={color}>{category}</color></b> 👈 {message}");
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace ZuyZuy.Workspace.Editor
         public static void LogWarning(string category, string message, string color = "yellow")
         {
             category = category.ToUpper();
-            UnityEngine.Debug.LogWarning($"[<color={color}>{category}] {message}");
+            UnityEngine.Debug.LogWarning($"👉 <b><color={color}>{category}</color></b> 👈 {message}");
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace ZuyZuy.Workspace.Editor
         public static void LogError(string category, string message, string color = "red")
         {
             category = category.ToUpper();
-            UnityEngine.Debug.LogError($"[<color={color}>{category}] {message}");
+            UnityEngine.Debug.LogError($"👉 <b><color={color}>{category}</color></b> 👈 {message}");
         }
 
         /// <summary>

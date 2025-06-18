@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace ZuyZuy.Workspace
@@ -12,6 +13,7 @@ namespace ZuyZuy.Workspace
         /// </summary>
         /// <param name="includeAlpha">Whether to include alpha channel randomization</param>
         /// <returns>A randomly generated Color</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color RandomColor(bool includeAlpha = false)
         {
             return includeAlpha
@@ -25,6 +27,7 @@ namespace ZuyZuy.Workspace
         /// <param name="min">Minimum bounds for x, y, and z</param>
         /// <param name="max">Maximum bounds for x, y, and z</param>
         /// <returns>A randomly generated Vector3</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3 RandomVector3(float min, float max)
         {
             return new Vector3(
@@ -40,6 +43,7 @@ namespace ZuyZuy.Workspace
         /// <param name="minBounds">Minimum bounds vector</param>
         /// <param name="maxBounds">Maximum bounds vector</param>
         /// <returns>A randomly generated Vector3</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3 RandomVector3(Vector3 minBounds, Vector3 maxBounds)
         {
             return new Vector3(
@@ -55,6 +59,7 @@ namespace ZuyZuy.Workspace
         /// <param name="length">Length of the string to generate</param>
         /// <param name="chars">Character set to use (defaults to alphanumeric)</param>
         /// <returns>A randomly generated string</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string RandomString(int length, string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
         {
             char[] stringChars = new char[length];
@@ -69,6 +74,7 @@ namespace ZuyZuy.Workspace
         /// Generates a unique identifier based on current timestamp and random value.
         /// </summary>
         /// <returns>A unique string identifier</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GenerateUniqueId()
         {
             long ticks = System.DateTime.UtcNow.Ticks;
