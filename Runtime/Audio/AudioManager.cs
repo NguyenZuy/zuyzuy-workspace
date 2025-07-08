@@ -297,7 +297,6 @@ namespace ZuyZuy.Workspace
 
         #region Utility Methods
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool TryGetAudioClipData(string clipName, out AudioClipData clipData)
         {
             if (_audioClipLookup.TryGetValue(clipName, out clipData))
@@ -309,7 +308,6 @@ namespace ZuyZuy.Workspace
             return false;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private AudioSource GetAudioSourceForType(AudioType audioType)
         {
             return audioType switch
@@ -323,7 +321,6 @@ namespace ZuyZuy.Workspace
             };
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private AudioSource GetNextAvailableSFXSource()
         {
             // Round-robin selection of SFX sources
@@ -332,7 +329,6 @@ namespace ZuyZuy.Workspace
             return selectedSource;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void PlayOnSource(AudioSource source, AudioClipData clipData, AudioType audioType, float volumeMultiplier, float pitchMultiplier, bool loop)
         {
             source.clip = clipData.clip;
@@ -342,7 +338,6 @@ namespace ZuyZuy.Workspace
             source.Play();
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private float CalculateFinalVolume(float baseVolume, AudioType audioType)
         {
             float typeVolume = audioType switch
@@ -372,7 +367,6 @@ namespace ZuyZuy.Workspace
             AddClipsToLookup(_audioClipBatch.voiceover);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void AddClipsToLookup(AudioClipData[] clips)
         {
             if (clips == null) return;
@@ -398,21 +392,18 @@ namespace ZuyZuy.Workspace
             UpdateVoiceoverVolume();
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void UpdateBackgroundMusicVolume()
         {
             if (_backgroundMusicSource != null)
                 _backgroundMusicSource.volume = CalculateFinalVolume(1f, AudioType.BGM);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void UpdateUIVolume()
         {
             if (_uiSource != null)
                 _uiSource.volume = CalculateFinalVolume(1f, AudioType.UI);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void UpdateSFXVolume()
         {
             if (_sfxSources != null)
@@ -425,14 +416,12 @@ namespace ZuyZuy.Workspace
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void UpdateAmbienceVolume()
         {
             if (_ambienceSource != null)
                 _ambienceSource.volume = CalculateFinalVolume(1f, AudioType.Ambience);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void UpdateVoiceoverVolume()
         {
             if (_voiceoverSource != null)
@@ -482,21 +471,18 @@ namespace ZuyZuy.Workspace
             StopVoiceoverFade();
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void StopBackgroundMusicFade()
         {
             if (_backgroundMusicFadeHandle.IsActive())
                 _backgroundMusicFadeHandle.Cancel();
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void StopAmbienceFade()
         {
             if (_ambienceFadeHandle.IsActive())
                 _ambienceFadeHandle.Cancel();
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void StopVoiceoverFade()
         {
             if (_voiceoverFadeHandle.IsActive())

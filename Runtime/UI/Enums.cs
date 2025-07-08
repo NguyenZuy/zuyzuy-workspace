@@ -18,17 +18,16 @@ namespace ZuyZuy.Workspace
         Input
     }
 
-    public enum ButtonClickEffect
-    {
-        None,
-        Scale,
-        Punch,
-        Shake,
-        Rotation,
-        ColorTint,
-        Bounce,
-        Squeeze,
-        Flash,
-        Pulse
-    }
+    // public enum ButtonClickEffect
+    // {
+    //     None,
+    //     Scale,
+    //     Punch,
+    //     Shake,
+    //     Rotation,
+    //     ColorTint,
+    //     Bounce,
+    //     Squeeze,
+    //     Flash,
+    //     Pulse
 }
