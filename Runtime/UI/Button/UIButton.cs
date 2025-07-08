@@ -205,15 +205,15 @@ namespace ZuyZuy.Workspace
 
         private void PlayScaleEffect()
         {
-            var sequence = LSequence.Create()
+            _currentEffectHandle = LSequence.Create()
                 .Append(LMotion.Create(_originalScale, Vector3.Scale(_originalScale, scaleAmount), animationDuration * 0.5f)
                     .WithEase(easeType)
                     .BindToLocalScale(transform))
                 .Append(LMotion.Create(Vector3.Scale(_originalScale, scaleAmount), _originalScale, animationDuration * 0.5f)
                     .WithEase(easeType)
-                    .BindToLocalScale(transform));
-
-            _currentEffectHandle = sequence.WithOnComplete(OnEffectFinished).Run();
+                    .WithOnComplete(OnEffectFinished)
+                    .BindToLocalScale(transform))
+                .Run();
         }
 
         private void PlayPunchEffect()
@@ -236,15 +236,15 @@ namespace ZuyZuy.Workspace
         {
             var targetRotation = _originalRotation + rotationAmount;
 
-            var sequence = LSequence.Create()
+            _currentEffectHandle = LSequence.Create()
                 .Append(LMotion.Create(_originalRotation, targetRotation, animationDuration * 0.5f)
                     .WithEase(easeType)
                     .BindToLocalEulerAngles(transform))
                 .Append(LMotion.Create(targetRotation, _originalRotation, animationDuration * 0.5f)
                     .WithEase(easeType)
-                    .BindToLocalEulerAngles(transform));
-
-            _currentEffectHandle = sequence.WithOnComplete(OnEffectFinished).Run();
+                    .WithOnComplete(OnEffectFinished)
+                    .BindToLocalEulerAngles(transform))
+                .Run();
         }
 
         private void PlayColorTintEffect()
@@ -255,45 +255,45 @@ namespace ZuyZuy.Workspace
                 return;
             }
 
-            var sequence = LSequence.Create()
+            _currentEffectHandle = LSequence.Create()
                 .Append(LMotion.Create(_originalColor, tintColor, animationDuration * 0.5f)
                     .WithEase(easeType)
                     .BindToColor(_image))
                 .Append(LMotion.Create(tintColor, _originalColor, animationDuration * 0.5f)
                     .WithEase(easeType)
-                    .BindToColor(_image));
-
-            _currentEffectHandle = sequence.WithOnComplete(OnEffectFinished).Run();
+                    .WithOnComplete(OnEffectFinished)
+                    .BindToColor(_image))
+                .Run();
         }
 
         private void PlayBounceEffect()
         {
             var targetScale = _originalScale * bounceScale;
 
-            var sequence = LSequence.Create()
+            _currentEffectHandle = LSequence.Create()
                 .Append(LMotion.Create(_originalScale, targetScale, animationDuration * 0.3f)
                     .WithEase(Ease.OutBack)
                     .BindToLocalScale(transform))
                 .Append(LMotion.Create(targetScale, _originalScale, animationDuration * 0.7f)
                     .WithEase(Ease.OutBounce)
-                    .BindToLocalScale(transform));
-
-            _currentEffectHandle = sequence.WithOnComplete(OnEffectFinished).Run();
+                    .WithOnComplete(OnEffectFinished)
+                    .BindToLocalScale(transform))
+                .Run();
         }
 
         private void PlaySqueezeEffect()
         {
             var targetScale = Vector3.Scale(_originalScale, squeezeScale);
 
-            var sequence = LSequence.Create()
-                .Append(LMotion.Create(_originalScale, targetScale, animationDuration * 0.5f)
-                    .WithEase(easeType)
-                    .BindToLocalScale(transform))
-                .Append(LMotion.Create(targetScale, _originalScale, animationDuration * 0.5f)
-                    .WithEase(easeType)
-                    .BindToLocalScale(transform));
-
-            _currentEffectHandle = sequence.WithOnComplete(OnEffectFinished).Run();
+            _currentEffectHandle = LSequence.Create()
+                 .Append(LMotion.Create(_originalScale, targetScale, animationDuration * 0.5f)
+                     .WithEase(easeType)
+                     .BindToLocalScale(transform))
+                 .Append(LMotion.Create(targetScale, _originalScale, animationDuration * 0.5f)
+                     .WithEase(easeType)
+                     .WithOnComplete(OnEffectFinished)
+                     .BindToLocalScale(transform))
+                .Run();
         }
 
         private void PlayFlashEffect()
@@ -304,15 +304,15 @@ namespace ZuyZuy.Workspace
                 return;
             }
 
-            var sequence = LSequence.Create()
+            _currentEffectHandle = LSequence.Create()
                 .Append(LMotion.Create(_originalColor, flashColor, animationDuration * 0.2f)
                     .WithEase(Ease.OutQuad)
                     .BindToColor(_image))
                 .Append(LMotion.Create(flashColor, _originalColor, animationDuration * 0.8f)
                     .WithEase(Ease.OutQuad)
-                    .BindToColor(_image));
-
-            _currentEffectHandle = sequence.WithOnComplete(OnEffectFinished).Run();
+                    .WithOnComplete(OnEffectFinished)
+                    .BindToColor(_image))
+                .Run();
         }
 
         private void PlayPulseEffect()

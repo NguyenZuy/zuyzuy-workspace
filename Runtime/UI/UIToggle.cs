@@ -72,9 +72,9 @@ public class UIToggle : MonoBehaviour
         _currentAnimationHandle = LSequence.Create()
             // Handle scale animation (press effect)
             .Append(LMotion.Create(Vector3.one, Vector3.one * _handleScaleOnPress, _handleScaleDuration)
-                .BindToScale(_handle.rectTransform))
+                .BindToLocalScale(_handle.rectTransform))
             .Append(LMotion.Create(Vector3.one * _handleScaleOnPress, Vector3.one, _handleScaleDuration)
-                .BindToScale(_handle.rectTransform))
+                .BindToLocalScale(_handle.rectTransform))
 
             // Background color animation (starts with scale)
             .Join(LMotion.Create(_background.color, targetBgColor, _animationDuration)
