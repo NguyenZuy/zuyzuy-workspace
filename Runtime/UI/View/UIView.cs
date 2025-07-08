@@ -11,7 +11,7 @@ namespace ZuyZuy.Workspace
 
         public string ViewName => m_ViewName;
 
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             m_Container = transform.GetChild(0).gameObject;
             Init();
