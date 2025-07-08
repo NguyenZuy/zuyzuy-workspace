@@ -14,7 +14,7 @@ namespace ZuyZuy.Workspace
 
         [Title("Audio Sources")]
         [SerializeField] private AudioSource _backgroundMusicSource;
-        [SerializeField] private AudioSource _uiSource;
+        [SerializeField] private AudioSource _buttonClickSource;
         [SerializeField] private AudioSource[] _sfxSources;
         [SerializeField] private AudioSource _ambienceSource;
         [SerializeField] private AudioSource _voiceoverSource;
@@ -25,7 +25,7 @@ namespace ZuyZuy.Workspace
         [Title("Volume Settings")]
         [SerializeField, Range(0f, 1f)] private float _masterVolume = 1f;
         [SerializeField, Range(0f, 1f)] private float _backgroundMusicVolume = 0.7f;
-        [SerializeField, Range(0f, 1f)] private float _uiVolume = 1f;
+        [SerializeField, Range(0f, 1f)] private float _buttonClickVolume = 1f;
         [SerializeField, Range(0f, 1f)] private float _sfxVolume = 1f;
         [SerializeField, Range(0f, 1f)] private float _ambienceVolume = 0.5f;
         [SerializeField, Range(0f, 1f)] private float _voiceoverVolume = 1f;
@@ -59,13 +59,13 @@ namespace ZuyZuy.Workspace
             }
         }
 
-        public float UIVolume
+        public float ButtonClickVolume
         {
-            get => _uiVolume;
+            get => _buttonClickVolume;
             set
             {
-                _uiVolume = Mathf.Clamp01(value);
-                UpdateUIVolume();
+                _buttonClickVolume = Mathf.Clamp01(value);
+                UpdateButtonClickVolume();
             }
         }
 
@@ -257,7 +257,7 @@ namespace ZuyZuy.Workspace
             StopAllFades();
 
             _backgroundMusicSource.Stop();
-            _uiSource.Stop();
+            _buttonClickSource.Stop();
             _ambienceSource.Stop();
             _voiceoverSource.Stop();
 
@@ -271,7 +271,7 @@ namespace ZuyZuy.Workspace
         public void PauseAllAudio()
         {
             _backgroundMusicSource.Pause();
-            _uiSource.Pause();
+            _buttonClickSource.Pause();
             _ambienceSource.Pause();
             _voiceoverSource.Pause();
 
@@ -285,7 +285,7 @@ namespace ZuyZuy.Workspace
         public void ResumeAllAudio()
         {
             _backgroundMusicSource.UnPause();
-            _uiSource.UnPause();
+            _buttonClickSource.UnPause();
             _ambienceSource.UnPause();
             _voiceoverSource.UnPause();
 
@@ -313,7 +313,7 @@ namespace ZuyZuy.Workspace
             return audioType switch
             {
                 AudioType.BGM => _backgroundMusicSource,
-                AudioType.UI => _uiSource,
+                AudioType.ButtonClick => _buttonClickSource,
                 AudioType.SFX => GetNextAvailableSFXSource(),
                 AudioType.Ambience => _ambienceSource,
                 AudioType.Voiceover => _voiceoverSource,
@@ -343,7 +343,7 @@ namespace ZuyZuy.Workspace
             float typeVolume = audioType switch
             {
                 AudioType.BGM => _backgroundMusicVolume,
-                AudioType.UI => _uiVolume,
+                AudioType.ButtonClick => _buttonClickVolume,
                 AudioType.SFX => _sfxVolume,
                 AudioType.Ambience => _ambienceVolume,
                 AudioType.Voiceover => _voiceoverVolume,
@@ -360,21 +360,26 @@ namespace ZuyZuy.Workspace
             if (_audioClipBatch == null)
                 return;
 
-            AddClipsToLookup(_audioClipBatch.backgroundMusic);
-            AddClipsToLookup(_audioClipBatch.ui);
-            AddClipsToLookup(_audioClipBatch.sfx);
-            AddClipsToLookup(_audioClipBatch.ambience);
-            AddClipsToLookup(_audioClipBatch.voiceover);
+            AddAudioDataToLookup(_audioClipBatch.backgroundMusic);
+            AddAudioDataToLookup(_audioClipBatch.buttonClick);
+            AddAudioDataToLookup(_audioClipBatch.sfx);
+            AddAudioDataToLookup(_audioClipBatch.ambience);
+            AddAudioDataToLookup(_audioClipBatch.voiceover);
         }
 
-        private void AddClipsToLookup(AudioClipData[] clips)
+        private void AddAudioDataToLookup(AudioData[] audioDataArray)
         {
-            if (clips == null) return;
+            if (audioDataArray == null) return;
 
-            foreach (var clipData in clips)
+            foreach (var audioData in audioDataArray)
             {
-                if (clipData?.clip != null)
-                    _audioClipLookup[clipData.clip.name] = clipData;
+                if (audioData?.clips == null) continue;
+
+                foreach (var clipData in audioData.clips)
+                {
+                    if (clipData?.clip != null)
+                        _audioClipLookup[clipData.clip.name] = clipData;
+                }
             }
         }
 
@@ -386,7 +391,7 @@ namespace ZuyZuy.Workspace
         private void UpdateAllSourceVolumes()
         {
             UpdateBackgroundMusicVolume();
-            UpdateUIVolume();
+            UpdateButtonClickVolume();
             UpdateSFXVolume();
             UpdateAmbienceVolume();
             UpdateVoiceoverVolume();
@@ -398,10 +403,10 @@ namespace ZuyZuy.Workspace
                 _backgroundMusicSource.volume = CalculateFinalVolume(1f, AudioType.BGM);
         }
 
-        private void UpdateUIVolume()
+        private void UpdateButtonClickVolume()
         {
-            if (_uiSource != null)
-                _uiSource.volume = CalculateFinalVolume(1f, AudioType.UI);
+            if (_buttonClickSource != null)
+                _buttonClickSource.volume = CalculateFinalVolume(1f, AudioType.ButtonClick);
         }
 
         private void UpdateSFXVolume()
@@ -497,15 +502,17 @@ namespace ZuyZuy.Workspace
         [Button("Test Play SFX")]
         private void TestPlaySFX()
         {
-            if (_audioClipBatch?.sfx != null && _audioClipBatch.sfx.Length > 0)
-                PlayOneShot(_audioClipBatch.sfx[0].clip.name, AudioType.SFX);
+            if (_audioClipBatch?.sfx != null && _audioClipBatch.sfx.Length > 0 &&
+                _audioClipBatch.sfx[0]?.clips != null && _audioClipBatch.sfx[0].clips.Length > 0)
+                PlayOneShot(_audioClipBatch.sfx[0].clips[0].clip.name, AudioType.SFX);
         }
 
         [Button("Test Play BGM")]
         private void TestPlayBGM()
         {
-            if (_audioClipBatch?.backgroundMusic != null && _audioClipBatch.backgroundMusic.Length > 0)
-                PlayBackgroundMusic(_audioClipBatch.backgroundMusic[0].clip.name);
+            if (_audioClipBatch?.backgroundMusic != null && _audioClipBatch.backgroundMusic.Length > 0 &&
+                _audioClipBatch.backgroundMusic[0]?.clips != null && _audioClipBatch.backgroundMusic[0].clips.Length > 0)
+                PlayBackgroundMusic(_audioClipBatch.backgroundMusic[0].clips[0].clip.name);
         }
 
         [Button("Stop All Audio")]
@@ -519,8 +526,8 @@ namespace ZuyZuy.Workspace
             if (_backgroundMusicSource == null)
                 ZuyLogger.LogError("AudioManager", "Background music source is not assigned");
 
-            if (_uiSource == null)
-                ZuyLogger.LogError("AudioManager", "UI source is not assigned");
+            if (_buttonClickSource == null)
+                ZuyLogger.LogError("AudioManager", "Button click source is not assigned");
 
             if (_sfxSources == null || _sfxSources.Length == 0)
                 ZuyLogger.LogError("AudioManager", "SFX sources are not assigned");

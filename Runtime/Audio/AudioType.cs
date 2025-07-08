@@ -24,13 +24,6 @@ namespace ZuyZuy.Workspace
         SFX,
 
         /// <summary>
-        /// User Interface (UI) sounds. These provide auditory feedback for
-        /// interactions with the UI, like button clicks, hovers, opening menus,
-        /// or receiving notifications.
-        /// </summary>
-        UI,
-
-        /// <summary>
         /// Ambient sounds. These are looping background sounds that create
         /// the atmosphere of an environment, such as wind, birds chirping,
         /// a bustling city, or the hum of machinery.
@@ -42,5 +35,7 @@ namespace ZuyZuy.Workspace
         /// any voice lines that convey story or information.
         /// </summary>
         Voiceover,
+
+        ButtonClick,
     }
 }

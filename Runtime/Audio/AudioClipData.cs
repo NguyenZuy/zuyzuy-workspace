@@ -6,7 +6,6 @@ namespace ZuyZuy.Workspace
     [System.Serializable]
     public class AudioClipData
     {
-        public AudioType type;
         [Required]
         public AudioClip clip;
         [Range(0, 1)]

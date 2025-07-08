@@ -7,41 +7,18 @@ namespace ZuyZuy.Workspace
     public class AudioClipBatchSO : ScriptableObject
     {
         [Title("Background Music")]
-        public AudioClipData[] backgroundMusic;
-
-        [Title("UI")]
-        public AudioClipData[] ui;
+        public AudioData[] backgroundMusic;
 
         [Title("SFX")]
-        public AudioClipData[] sfx;
+        public AudioData[] sfx;
 
         [Title("Ambience")]
-        public AudioClipData[] ambience;
+        public AudioData[] ambience;
 
         [Title("Voiceover")]
-        public AudioClipData[] voiceover;
+        public AudioData[] voiceover;
 
-        void OnValidate()
-        {
-            if (backgroundMusic != null && backgroundMusic.Length > 0)
-                foreach (var clip in backgroundMusic)
-                    clip.type = AudioType.BGM;
-
-            if (ui != null && ui.Length > 0)
-                foreach (var clip in ui)
-                    clip.type = AudioType.UI;
-
-            if (sfx != null && sfx.Length > 0)
-                foreach (var clip in sfx)
-                    clip.type = AudioType.SFX;
-
-            if (ambience != null && ambience.Length > 0)
-                foreach (var clip in ambience)
-                    clip.type = AudioType.Ambience;
-
-            if (voiceover != null && voiceover.Length > 0)
-                foreach (var clip in voiceover)
-                    clip.type = AudioType.Voiceover;
-        }
+        [Title("Button Click")]
+        public AudioData[] buttonClick;
     }
 }
