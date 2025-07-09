@@ -26,6 +26,16 @@ namespace ZuyZuy.Workspace
         [LabelText("Animation Preset")]
         [SerializeField] private PopupPresetType presetType = PopupPresetType.SilkFade;
 
+        [ShowIf(nameof(usePreset))]
+        [ShowIf(nameof(ShouldShowPresetCustomization))]
+        [Group("Preset Selection")]
+        [SerializeField] private bool allowCustomDuration = false;
+
+        [ShowIf(nameof(usePreset))]
+        [ShowIf(nameof(allowCustomDuration))]
+        [Group("Preset Selection")]
+        [SerializeField] private float customPresetDuration = 0.3f;
+
         [ShowIf(nameof(ShouldShowCustomAnimationSettings))]
         [Title("🛠️ Custom Animation Settings")]
         [Group("Custom Animation")]
@@ -228,6 +238,12 @@ namespace ZuyZuy.Workspace
             if (usePreset && presetType != PopupPresetType.Custom)
             {
                 _currentConfig = GetPresetConfig(presetType);
+
+                // Override duration if custom duration is enabled
+                if (_currentConfig != null && allowCustomDuration)
+                {
+                    _currentConfig.duration = customPresetDuration;
+                }
             }
             else
             {
@@ -375,6 +391,11 @@ namespace ZuyZuy.Workspace
         private bool ShouldShowTestButtons()
         {
             return true; // Allow testing in both editor and play mode
+        }
+
+        private bool ShouldShowPresetCustomization()
+        {
+            return usePreset && presetType != PopupPresetType.Custom;
         }
 
         private void EnsureComponentsInitialized()

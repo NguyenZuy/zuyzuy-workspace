@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ZuyZuy.Workspace
 {
-    public class BaseSingleton<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class BaseSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T _instance;
 

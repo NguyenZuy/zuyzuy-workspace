@@ -24,6 +24,18 @@ namespace ZuyZuy.Workspace
         [SerializeField] private ButtonPresetType presetType = ButtonPresetType.WhisperScale;
 
         [ShowIf(nameof(useUnityDefaultEffect), false)]
+        [ShowIf(nameof(usePreset))]
+        [ShowIf(nameof(ShouldShowPresetCustomization))]
+        [Group("Preset Selection")]
+        [SerializeField] private bool allowCustomDuration = false;
+
+        [ShowIf(nameof(useUnityDefaultEffect), false)]
+        [ShowIf(nameof(usePreset))]
+        [ShowIf(nameof(allowCustomDuration))]
+        [Group("Preset Selection")]
+        [SerializeField] private float customPresetDuration = 0.2f;
+
+        [ShowIf(nameof(useUnityDefaultEffect), false)]
         [ShowIf(nameof(ShouldShowCustomEffectSettings))]
         [Title("🛠️ Custom Effect Settings")]
         [Group("Custom Effect")]
@@ -243,6 +255,12 @@ namespace ZuyZuy.Workspace
             {
                 _currentConfig = GetPresetConfig(presetType);
                 // Note: _currentConfig will be null for UnityDefault, which is intended
+
+                // Override duration if custom duration is enabled
+                if (_currentConfig != null && allowCustomDuration)
+                {
+                    _currentConfig.duration = customPresetDuration;
+                }
             }
             else
             {
@@ -577,6 +595,11 @@ namespace ZuyZuy.Workspace
             return !IsUnityDefaultSelected() && !useUnityDefaultEffect;
         }
 
+        private bool ShouldShowPresetCustomization()
+        {
+            return usePreset && presetType != ButtonPresetType.UnityDefault && presetType != ButtonPresetType.Custom;
+        }
+
         #endregion
 
         #region Button Test Methods
@@ -626,21 +649,6 @@ namespace ZuyZuy.Workspace
 
             SetPreset(randomPreset);
             Debug.Log($"Applied random preset: {randomPreset}");
-#endif
-        }
-
-        [ShowIf(nameof(ShouldShowTestButtons))]
-        [Button("📋 Copy Current Config")]
-        private void CopyCurrentConfig()
-        {
-#if UNITY_EDITOR
-            ApplyCurrentConfiguration();
-            if (_currentConfig != null)
-            {
-                var configJson = JsonUtility.ToJson(_currentConfig, true);
-                GUIUtility.systemCopyBuffer = configJson;
-                Debug.Log($"Current configuration copied to clipboard:\n{configJson}");
-            }
 #endif
         }
 
