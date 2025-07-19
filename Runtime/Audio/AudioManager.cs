@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TriInspector;
 using UnityEngine;
 using LitMotion;
-using LitMotion.Extensions;
+#if UNITY_EDITOR
 using ZuyZuy.Workspace.Editor;
+#endif
 
 namespace ZuyZuy.Workspace
 {
